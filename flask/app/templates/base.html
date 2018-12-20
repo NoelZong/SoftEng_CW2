@@ -1,0 +1,70 @@
+<html>
+  <head>
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+    {% if title %}
+    <title>Note - {{ title }}</title>
+    {% else %}
+    <title>Note Test Application</title>
+    {% endif %}
+    <style>
+      ul#menu li {
+          display:inline;
+      }
+    </style>
+  </head>
+  <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Noel
+             <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li><a href="/">View Notes</a></li>
+              <li><a href="/note_create">Create Notes</a></li>
+             </ul>
+         </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="/"><span class="glyphicon glyphicon-remove"></span> </a></li>
+      </ul>
+
+    </div>
+</nav>
+
+<form method="post" action="/">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+</form>
+
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        {% with messages = get_flashed_messages(category_filter=['error'])%}
+          {% if messages %}
+
+            {% for message in messages %}
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Error!</strong> {{ message }}
+            </div>
+            {% endfor %}
+
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+      <td><a href="/note_create"><button type="button" class="btn btn-primary" style="background:green">Create Note</button></a><td>
+      
+      <td><a href="/list_true"><button type="button" class="btn btn-primary">View True</button></a></td>
+
+      <td><a href="/list_false"><button type="button" class="btn btn-primary">View False</button></a></td>
+
+      <td><a href="/"><button type="button" class="btn btn-primary">View All</button></a></td>
+
+<table class="table" class="form-control input-lg">
+    <thead>
+      <tr>
+      	<th>Title</th>
+        <th>Content</th>
+        <th>Boolean</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+    {% for note in note %}
+
+    {% if note.status==True %}
+    <tr style="background:#F0FFFF" >
+      <td>{{note.title}}</td>    	
+      <td>{{note.content}}</td>
+      <td>{{note.status}}</td>
+      <td>{{note.date}}</td>
+
+      <td><a href="/note_change_false/{{note.noteId}}"><button type="button" class="btn btn-primary">Change</button></a></td>
+
+      <td><a href="/note_edit/{{note.noteId}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+
+      <td><a href="/note_delete/{{note.noteId}}"><button type="button" class="btn btn-primary" style="background:red">Delete</button></a></td>
+    </tr>
+
+    {% else %}
+    <tr   style="background:#FFE4C4">
+      <td>{{note.title}}</td>
+      <td>{{note.content}}</td>
+      <td>{{note.status}}</td>
+      <td>{{note.date}}</td>
+
+      <td><a href="/note_change_true/{{note.noteId}}"><button type="button" class="btn btn-primary">Change</button></a></td>
+
+      <td><a href="/note_edit/{{note.noteId}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+
+      <td><a href="/note_delete/{{note.noteId}}"><button type="button" class="btn btn-primary" style="background:red">Delete</button></a></td>
+    </tr>
+    {%endif%}
+    {% endfor %}
+  
+  </tbody>
+</table>
+
+{% endblock %}

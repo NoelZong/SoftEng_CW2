@@ -1,0 +1,22 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Edit Notes</h1>
+  <form action="" method="post" name="create">
+      {{ form.hidden_tag() }}
+      <p>
+      Title:<br>
+      {{ form.title(class='form-control input-lg', type='text',placeholder='Please input the title') }}<br>
+      Task:<br>
+      {{ form.content(class='form-control input-lg', type='text',placeholder='Please input the content') }}<br>
+      Choose Date:<br>
+      {{ form.date(class_='form-control') }}<br>
+      {% for error in form.date.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+      
+      </p>
+      <p><input type="submit" class="btn btn-default" value="Edit Notes"></p>
+  </form>
+{% endblock %}
