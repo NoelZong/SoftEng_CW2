@@ -8,7 +8,6 @@ class Note (db.Model):
     status = db.Column(db.Boolean,default=False)
     date = db.Column(db.Date)
     def __repr__(self):
-        return  self.content + ' ' + self.stauts + 
-        		' ' + self.date+ ' ' + self.title
+        return  self.content + ' ' + self.stauts + ' ' + self.date+ ' ' + self.title
 
  
